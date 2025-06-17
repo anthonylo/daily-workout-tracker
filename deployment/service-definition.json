@@ -1,0 +1,21 @@
+{
+  "serviceName": "workout-app-service",
+  "cluster": "workout-app-cluster",
+  "taskDefinition": "workout-app",
+  "desiredCount": 2,
+  "launchType": "FARGATE",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": ["subnet-12345", "subnet-67890"],
+      "securityGroups": ["sg-12345"],
+      "assignPublicIp": "ENABLED"
+    }
+  },
+  "loadBalancers": [
+    {
+      "targetGroupArn": "arn:aws:elasticloadbalancing:region:account:targetgroup/workout-app/123456",
+      "containerName": "workout-app",
+      "containerPort": 80
+    }
+  ]
+}
