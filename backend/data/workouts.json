@@ -1,0 +1,89 @@
+{
+    "exercises": [
+      {
+        "name": "Push-ups",
+        "description": "10-15 push-ups. Keep your body straight and lower yourself until your chest nearly touches the floor.",
+        "duration": "2-3 minutes",
+        "difficulty": "Beginner",
+        "category": "Upper Body"
+      },
+      {
+        "name": "Jumping Jacks",
+        "description": "30 jumping jacks. Jump while spreading your legs and raising your arms overhead.",
+        "duration": "1-2 minutes",
+        "difficulty": "Beginner",
+        "category": "Cardio"
+      },
+      {
+        "name": "Squats",
+        "description": "15-20 squats. Stand with feet shoulder-width apart, lower your body as if sitting back into a chair.",
+        "duration": "2-3 minutes",
+        "difficulty": "Beginner",
+        "category": "Lower Body"
+      },
+      {
+        "name": "Plank",
+        "description": "Hold plank position for 30-60 seconds. Keep your body straight from head to toe.",
+        "duration": "1-2 minutes",
+        "difficulty": "Beginner",
+        "category": "Core"
+      },
+      {
+        "name": "Mountain Climbers",
+        "description": "20 mountain climbers. Start in plank position and alternately bring knees to chest quickly.",
+        "duration": "1-2 minutes",
+        "difficulty": "Intermediate",
+        "category": "Cardio"
+      },
+      {
+        "name": "Lunges",
+        "description": "10 lunges per leg. Step forward and lower your body until both knees are at 90 degrees.",
+        "duration": "3-4 minutes",
+        "difficulty": "Beginner",
+        "category": "Lower Body"
+      },
+      {
+        "name": "Burpees",
+        "description": "5-10 burpees. From standing, drop to squat, jump back to plank, do a push-up, jump feet back to squat, then jump up.",
+        "duration": "3-5 minutes",
+        "difficulty": "Advanced",
+        "category": "Full Body"
+      },
+      {
+        "name": "Wall Sit",
+        "description": "Hold wall sit for 30-45 seconds. Lean against wall with thighs parallel to floor.",
+        "duration": "1-2 minutes",
+        "difficulty": "Intermediate",
+        "category": "Lower Body"
+      },
+      {
+        "name": "High Knees",
+        "description": "30 seconds of high knees. Run in place while lifting knees as high as possible.",
+        "duration": "1 minute",
+        "difficulty": "Beginner",
+        "category": "Cardio"
+      },
+      {
+        "name": "Tricep Dips",
+        "description": "10-15 tricep dips using a chair or bench. Lower your body by bending your arms.",
+        "duration": "2-3 minutes",
+        "difficulty": "Intermediate",
+        "category": "Upper Body"
+      },
+      {
+        "name": "Crunches",
+        "description": "15-20 crunches. Lie on your back and lift your shoulders off the ground.",
+        "duration": "2-3 minutes",
+        "difficulty": "Beginner",
+        "category": "Core"
+      },
+      {
+        "name": "Leg Raises",
+        "description": "10-15 leg raises. Lie on your back and lift your legs up to 90 degrees.",
+        "duration": "2-3 minutes",
+        "difficulty": "Intermediate",
+        "category": "Core"
+      }
+    ]
+  }
+  

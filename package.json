@@ -1,0 +1,16 @@
+{
+  "name": "daily-workout-tracker",
+  "version": "1.0.0",
+  "description": "Daily workout tracker app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run backend\" \"npm run mobile\"",
+    "backend": "cd backend && npm start",
+    "mobile": "cd mobile && npm start",
+    "build": "cd mobile && npm run build",
+    "deploy": "cd deployment && ./deploy.sh"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

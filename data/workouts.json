@@ -1,0 +1,31 @@
+{
+    "workouts": [
+      {
+        "id": 1,
+        "name": "Push-ups",
+        "description": "Classic upper body exercise",
+        "reps": "10-20 reps",
+        "difficulty": "Beginner",
+        "muscleGroups": ["chest", "shoulders", "triceps"],
+        "equipment": "none"
+      },
+      {
+        "id": 2,
+        "name": "Squats",
+        "description": "Lower body strength builder",
+        "reps": "15-25 reps",
+        "difficulty": "Beginner",
+        "muscleGroups": ["quads", "glutes", "calves"],
+        "equipment": "none"
+      },
+      {
+        "id": 3,
+        "name": "Plank",
+        "description": "Core strengthener",
+        "reps": "30-60 seconds",
+        "difficulty": "Beginner",
+        "muscleGroups": ["core", "shoulders"],
+        "equipment": "none"
+      }
+    ]
+}

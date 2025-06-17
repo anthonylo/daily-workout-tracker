@@ -1,0 +1,95 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+jobs:
+  deploy-staging:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build application
+      run: npm run build
+      env:
+        REACT_APP_ENVIRONMENT: staging
+        REACT_APP_API_URL: ${{ secrets.STAGING_API_URL }}
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Build and push Docker image
+      run: |
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY }}
+        docker build -t workout-tracker:staging .
+        docker tag workout-tracker:staging ${{ secrets.ECR_REPOSITORY }}:staging
+        docker push ${{ secrets.ECR_REPOSITORY }}:staging
+
+    - name: Deploy to ECS
+      run: |
+        aws ecs update-service --cluster workout-tracker-staging --service workout-tracker-service --force-new-deployment
+
+  deploy-production:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build application
+      run: npm run build
+      env:
+        REACT_APP_ENVIRONMENT: production
+        REACT_APP_API_URL: ${{ secrets.PROD_API_URL }}
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Build and push Docker image
+      run: |
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY }}
+        docker build -t workout-tracker:${{ github.event.release.tag_name }} .
+        docker tag workout-tracker:${{ github.event.release.tag_name }} ${{ secrets.ECR_REPOSITORY }}:${{ github.event.release.tag_name }}
+        docker tag workout-tracker:${{ github.event.release.tag_name }} ${{ secrets.ECR_REPOSITORY }}:latest
+        docker push ${{ secrets.ECR_REPOSITORY }}:${{ github.event.release.tag_name }}
+        docker push ${{ secrets.ECR_REPOSITORY }}:latest
+
+    - name: Deploy to ECS
+      run: |
+        aws ecs update-service --cluster workout-tracker-prod --service workout-tracker-service --force-new-deployment
+
